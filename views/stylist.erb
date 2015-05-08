@@ -25,23 +25,21 @@
 
 
 
-<% if @clients.any?() %>
+<% if @stylist.not_clients().any?() %>
 <hr>
-<h4>Select clients to add to <%= @stylist.s_name() %>.</h4>
+<h4>Select a client to add to <%= @stylist.s_name() %>.</h4>
 
-<form action="/stylist/<%= @stylist.id %>" method="post">
-  <input type="hidden" name="_method" value="patch">
+<form action="/stylist/<%= @stylist.id() %>/add_client" method="post">
+    <input type ="hidden" name = "_method" value="patch">
 
-  <% @clients.each() do |client| %>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="client_ids[]" value="<%= client.id() %>"><%= client.c_name() %>
-      </label>
-    </div>
-  <% end %>
-
-  <button type="submit">Add clients</button>
-</form>
+      <label for="client_id">Select a Client</label>
+      <select id='client_id' name='client_id' type='text'>
+        <% @stylist.not_clients().each() do |client| %>
+          <option value="<%= client.id()%>"> <%= client.c_name() %> </option>
+        <% end %>
+      </select>
+      <button type = "submit"> Add </button>
+  </form>
 <% end %>
 <h4>or</h4>
 <form action="/stylist/<%= @stylist.id() %>/new_client" method="post">

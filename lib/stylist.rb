@@ -41,6 +41,7 @@ attr_reader(:s_name, :id)
     DB.exec("UPDATE stylists SET s_name ='#{@s_name}' WHERE id = #{@id};")
   end
 
+
   define_method(:delete) do
     DB.exec("DELETE FROM stylists WHERE id =#{self.id()};")
   end
@@ -55,5 +56,18 @@ attr_reader(:s_name, :id)
       returned_clients.push(Client.new({c_name: c_name, stylist_id: stylist_id, id: id}))
     end
     returned_clients
+  end
+
+  define_method(:not_clients) do
+    not_clients = []
+    id = self.id()
+    stylist = DB.exec("SELECT * FROM clients WHERE stylist_id != #{id};")
+    stylist.each() do |client|
+      c_name = client.fetch("c_name")
+      stylist_id = client.fetch("stylist_id").to_i()
+      id = client.fetch("id").to_i()
+      not_clients.push(Client.new({c_name: c_name, stylist_id: stylist_id, id: id}))
+    end
+    not_clients
   end
 end

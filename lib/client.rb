@@ -39,9 +39,9 @@ attr_reader(:c_name, :stylist_id, :id)
 
   define_method(:update) do |attributes|
     @c_name = attributes.fetch(:c_name, @c_name)
-    @stylist_id = attributes.fetch(:stylist_id, @stylist_id)
+    @stylist_id = attributes.fetch(:stylist_id, @stylist_id).to_i()
     @id = self.id()
-    DB.exec("UPDATE clients SET c_name ='#{@c_name}' WHERE id = #{@id} AND stylist_id = #{@stylist_id};")
+    DB.exec("UPDATE clients SET c_name ='#{@c_name}', stylist_id = #{@stylist_id} WHERE id = #{@id} AND stylist_id = #{@stylist_id};")
   end
 
   define_method(:delete) do

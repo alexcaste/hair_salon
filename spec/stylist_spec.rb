@@ -71,4 +71,17 @@ describe(Stylist) do
     end
   end
 
+  describe("#not_clients") do
+    it("finds all clients with a that are not matched with the stylist") do
+      stylist = Stylist.new(s_name: "Zoolander",  id: nil)
+      stylist.save()
+      id = stylist.id()
+      client = Client.new(c_name: "Bob", stylist_id: id, id: nil)
+      client.save()
+      client2 = Client.new(c_name: "Dan", stylist_id: 2, id: nil)
+      client2.save()
+      expect(stylist.not_clients()).to(eq([client2]))
+    end
+  end
+
 end

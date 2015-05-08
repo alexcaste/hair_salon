@@ -22,4 +22,10 @@ describe(Client) do
       expect(bob.stylist_id()).to(eq(1))
     end
   end
+
+  describe(".all") do
+    it("starts off with no trains") do
+      expect(Client.all()).to(eq([]))
+    end
+  end
 end

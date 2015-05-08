@@ -47,4 +47,10 @@ attr_reader(:c_name, :stylist_id, :id)
   define_method(:delete) do
     DB.exec("DELETE FROM clients WHERE id =#{self.id()};")
   end
+
+  define_method(:c_stylist) do
+    stylist = Stylist.find(@stylist_id)
+    stylist.s_name()
+  end
+
 end

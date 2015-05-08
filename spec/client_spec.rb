@@ -66,4 +66,14 @@ describe(Client) do
       expect(Client.all()).to(eq([dan]))
     end
   end
+
+  describe(:c_stylist) do
+    it("returns the name of the stylist for the client") do
+      stylist = Stylist.new(s_name: "Zoolander",  id: nil)
+      stylist.save()
+      client = Client.new(c_name: "Bob", stylist_id: stylist.id(), id: nil)
+      client.save()
+      expect(client.c_stylist()).to(eq("Zoolander"))
+    end
+  end
 end

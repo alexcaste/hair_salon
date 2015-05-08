@@ -1,0 +1,56 @@
+<h1><p class="text-center text-uppercase">The Derek Zoolander Hair Salon</p></h1>
+<hr>
+<h3><p class="text-center text-capitalize">for Kids Who Can't Read Good</p></h3>
+<h5><p class="text-center">(but want to look good too)</p></h5>
+
+
+<br>
+<h2>Stylists:</h2>
+<% if @stylists.any?() %>
+  <p>Click on stylist to see the clients they have:</p>
+
+  <ul>
+    <% @stylists.each do |stylist| %>
+    <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.s_name() %></a>
+      <form action ="/stylists/<%= stylist.id() %>" method="post">
+        <input name ="_method" type ="hidden" value="delete">
+        <button class="btn btn-xs pull-right"type = "submit">Delete</button>
+      </form>
+    </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h6><p class="text-left text-uppercase">There are no stylists to help the poor illiterate children.</p></h6>
+<% end %>
+
+<br>
+
+<form action="/stylists" method="post">
+  <label for="s_name">Add Stylist:</label>
+  <input id="s_name" name="s_name" type="text">
+
+  <button type="submit">Add</button>
+</form>
+<br>
+<hr>
+
+<br>
+<h2>Client:</h2>
+<% if @clients.any?() %>
+  <p>Click on stylist to see the clients they have:</p>
+
+  <ul>
+    <% @clients.each do |client| %>
+    <li>Client: <%= client.c_name() %>  Stylist: <% client.c_stylist() %>
+      <form action ="/clients/<%= client.id() %>" method="post">
+        <input name ="_method" type ="hidden" value="delete">
+        <button class="btn btn-xs pull-left"type = "submit">Delete</button>
+      </form>
+    </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h6><p class="text-left text-uppercase">All the poor illiterate children have been saved. Please, find more to help.</p></h6>
+<% end %>
+
+<br>

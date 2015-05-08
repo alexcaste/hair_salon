@@ -31,3 +31,23 @@ describe('the save a stylists path', {:type => :feature}) do
     expect(page).to have_content("Zoolander")
   end
 end
+
+describe('the delete a stylist path', {:type => :feature})do
+  it("allows user to delete a stylist")do
+  stylist = Stylist.new(s_name: "Zoolander", id: nil)
+  stylist.save()
+  visit('/')
+  click_button('Delete')
+  expect(page).to have_content('There are no stylists')
+  end
+end
+
+describe('the view single stylist path', {:type => :feature})do
+  it("displays the page for a single stylist")do
+  stylist = Stylist.new(s_name: "Zoolander", id: nil)
+  stylist.save()
+  visit('/')
+  click_link('Zoolander')
+  expect(page).to have_content('Zoolander')
+  end
+end

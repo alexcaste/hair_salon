@@ -11,11 +11,15 @@
 
   <ul>
     <% @stylists.each do |stylist| %>
-    <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.s_name() %></a>
-      <form action ="/stylists/<%= stylist.id() %>" method="post">
-        <input name ="_method" type ="hidden" value="delete">
-        <button class="btn btn-xs pull-right"type = "submit">Delete</button>
-      </form>
+    <li>
+        <a href="/stylists/<%= stylist.id() %>"><%= stylist.s_name() %></a>
+          <span class = "btn-group">
+            <form action ="/stylists/<%= stylist.id() %>" method="post">
+              <input name ="_method" type ="hidden" value="delete">
+              <button type = "submit">Delete</button>
+            </form>
+        </span>
+      <p></p>
     </li>
     <% end %>
   </ul>
@@ -41,12 +45,7 @@
 
   <ul>
     <% @clients.each do |client| %>
-    <li>Client: <%= client.c_name() %>  Stylist: <% client.c_stylist() %>
-      <form action ="/clients/<%= client.id() %>" method="post">
-        <input name ="_method" type ="hidden" value="delete">
-        <button class="btn btn-xs pull-left"type = "submit">Delete</button>
-      </form>
-    </li>
+    <li>Client: <%= client.c_name() %>  Stylist: <% client.c_stylist() %></li>
     <% end %>
   </ul>
 <% else %>

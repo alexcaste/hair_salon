@@ -35,4 +35,9 @@ attr_reader(:s_name, :id)
      self.s_name().==(dup_styl.s_name()).&(self.id().==(dup_styl.id()))
   end
 
+  define_method(:update) do |attributes|
+    @s_name = attributes.fetch(:s_name, @s_name)
+    @id = self.id()
+    DB.exec("UPDATE stylists SET s_name ='#{@s_name}' WHERE id = #{@id};")
+  end
 end

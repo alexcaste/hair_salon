@@ -40,4 +40,12 @@ describe(Stylist) do
     end
   end
 
+  describe("#update") do
+    it("lets you update stylists in the database") do
+      stylist = Stylist.new(s_name: "Zoolander",  id: nil)
+      stylist.save()
+      stylist.update({s_name: "Hansel"})
+      expect(stylist.s_name()).to(eq("Hansel"))
+    end
+  end
 end

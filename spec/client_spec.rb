@@ -38,4 +38,21 @@ describe(Client) do
       expect(Client.find(bob.id())).to(eq(bob))
     end
   end
+
+  describe('#==') do
+    it("is the same if the client name and stylist id is the same") do
+      bob = Client.new(c_name: "Bob", stylist_id: 1, id: nil)
+      bob2 = Client.new(c_name: "Bob", stylist_id: 1, id: nil)
+      expect(bob).to(eq(bob2))
+    end
+  end
+
+  describe("#update") do
+    it("lets you update clients in the database") do
+      client = Client.new(c_name: "Bob", stylist_id: 1, id: nil)
+      client.save()
+      client.update({c_name: "Dan"})
+      expect(client.c_name()).to(eq("Dan"))
+    end
+  end
 end

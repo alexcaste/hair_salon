@@ -21,4 +21,23 @@ describe(Stylist) do
       expect(Stylist.all()).to(eq([]))
     end
   end
+
+  describe(".find") do
+    it("returns a stylist by its ID number") do
+      stylist = Stylist.new(s_name: "Zoolander",  id: nil)
+      stylist.save()
+      stylist2 = Stylist.new(s_name: "Hansel",  id: nil)
+      stylist2.save()
+      expect(Stylist.find(stylist.id())).to(eq(stylist))
+    end
+  end
+
+  describe('#==') do
+    it("is the same if the stylist name and id is the same") do
+      stylist = Stylist.new(s_name: "Zoolander",  id: nil)
+      stylist2 = Stylist.new(s_name: "Zoolander",  id: nil)
+      expect(stylist).to(eq(stylist2))
+    end
+  end
+
 end

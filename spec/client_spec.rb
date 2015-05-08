@@ -55,4 +55,15 @@ describe(Client) do
       expect(client.c_name()).to(eq("Dan"))
     end
   end
+
+  describe("#delete") do
+    it("lets you delete a client from the database") do
+      bob = Client.new(c_name: "Bob", stylist_id: 1, id: nil)
+      bob.save()
+      dan = Client.new(c_name: "Dan", stylist_id: 1, id: nil)
+      dan.save()
+      bob.delete()
+      expect(Client.all()).to(eq([dan]))
+    end
+  end
 end

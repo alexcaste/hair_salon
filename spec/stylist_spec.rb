@@ -60,4 +60,15 @@ describe(Stylist) do
     end
   end
 
+  describe("#all_clients") do
+    it("finds all clients with a matching stylist id and returns an array of the clients") do
+      stylist = Stylist.new(s_name: "Zoolander",  id: nil)
+      stylist.save()
+      id = stylist.id()
+      client = Client.new(c_name: "Bob", stylist_id: id, id: nil)
+      client.save()
+        expect(stylist.all_clients()).to(eq([client]))
+    end
+  end
+
 end

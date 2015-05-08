@@ -44,4 +44,16 @@ attr_reader(:s_name, :id)
   define_method(:delete) do
     DB.exec("DELETE FROM stylists WHERE id =#{self.id()};")
   end
+
+  define_method(:all_clients) do
+    returned_clients = []
+    stylist_table = DB.exec("SELECT * FROM clients WHERE stylist_id = #{self.id()};")
+    stylist_table.each() do |client|
+      c_name = client.fetch("c_name")
+      stylist_id = client.fetch("stylist_id").to_i()
+      id = client.fetch("id").to_i()
+      returned_clients.push(Client.new({c_name: c_name, stylist_id: stylist_id, id: id}))
+    end
+    returned_clients
+  end
 end

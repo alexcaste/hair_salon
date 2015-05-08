@@ -22,3 +22,12 @@ describe('the all clients path', {:type => :feature}) do
     expect(page).to have_content(client.c_name())
   end
 end
+
+describe('the save a stylists path', {:type => :feature}) do
+  it("saves a stylist") do
+    visit('/')
+    fill_in('s_name', :with => "Zoolander")
+    click_button('Add')
+    expect(page).to have_content("Zoolander")
+  end
+end

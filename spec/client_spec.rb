@@ -28,4 +28,14 @@ describe(Client) do
       expect(Client.all()).to(eq([]))
     end
   end
+
+  describe(".find") do
+    it("returns a client by its ID number") do
+      bob = Client.new(c_name: "Bob", stylist_id: 1, id: nil)
+      bob.save()
+      dan = Client.new(c_name: "Dan", stylist_id: 1, id: nil)
+      dan.save()
+      expect(Client.find(bob.id())).to(eq(bob))
+    end
+  end
 end

@@ -72,7 +72,7 @@ describe('the delete a stylist path', {:type => :feature})do
 end
 
 describe('the add a new client to a stylist path', {:type => :feature})do
-  it("allows user to add a client to a stylist")do
+  it("allows user to add a new client to a stylist")do
   stylist = Stylist.new(s_name: "Zoolander", id: nil)
   stylist.save()
   visit('/')
@@ -80,5 +80,17 @@ describe('the add a new client to a stylist path', {:type => :feature})do
   fill_in('c_name', :with => "Dan")
   click_button('Add')
   expect(page).to have_content('Dan')
+  end
+end
+
+describe('the change name of stylist path', {:type => :feature})do
+  it("allows user to change name of stylist")do
+  stylist = Stylist.new(s_name: "Zoolander", id: nil)
+  stylist.save()
+  visit('/')
+  click_link('Zoolander')
+  fill_in('s_name', :with => "Hansel")
+  click_button('Change')
+  expect(page).to have_content('Hansel')
   end
 end

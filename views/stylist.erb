@@ -1,0 +1,67 @@
+<h1>Information for <%= @stylist.s_name() %>.</h1>
+<br>
+<%  if @stylist.all_clients().any?() %>
+<h3>Here are all the clients for <%= @stylist.s_name() %>.</h3>
+
+  <ul>
+    <% @stylist.all_clients().each() do |client| %>
+      <li><%= client.c_name() %>
+        <span class = "btn-group">
+          <form action ="/client/<%= client.id() %>" method="post">
+            <input name ="_method" type ="hidden" value="delete">
+            <button type = "submit">Delete</button>
+          </form>
+      </span>
+    <p></p>
+      </li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+<h4>The children are afraid of <%= @stylist.s_name() %></h4>
+
+<% end %>
+
+
+
+<% if @clients.any?() %>
+<hr>
+<h4>Select clients to add to <%= @stylist.s_name() %>.</h4>
+
+<form action="/stylist/<%= @stylist.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <% @clients.each() do |client| %>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="client_ids[]" value="<%= client.id() %>"><%= client.c_name() %>
+      </label>
+    </div>
+  <% end %>
+
+  <button type="submit">Add clients</button>
+</form>
+<% end %>
+<h4>or</h4>
+<form action="/stylist/<%= @stylist.id() %>/new_client" method="post">
+  <input id = 'stylist_id' name = 'stylist_id' type ='hidden' value = '<%= @stylist.id() %>'>
+  <label for="c_name">Add a new Client:</label>
+  <input id="c_name" name="c_name" type="text">
+
+  <button type="submit">Add</button>
+</form>
+
+<hr>
+<h4>Change the name of <%= @stylist.s_name() %>.</h4>
+<form action="/stylist_edit/<%= @stylist.id() %>" method="post">
+  <input id = 'stylist_id' name = 'stylist_id' type ='hidden' value = '<%= @stylist.id() %>'>
+  <input type ="hidden" name = "_method" value="patch">
+  <label for="s_name">Change name</label>
+  <input id="s_name" name="s_name" type="text">
+
+  <button type = "submit">Change</button>
+</form>
+
+<hr>
+<a href="/">Home</a>

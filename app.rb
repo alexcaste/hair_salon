@@ -70,14 +70,12 @@ delete('/client/:id') do
   erb(:stylist)
 end
 
-patch('/stylist/:id') do
-  stylist_id = params.fetch("stylist_id").to_i()
-  @train = Train.find(stylist_id)
-  city_id = params.fetch("id").to_i()
-  @stylist = City.find(city_id)
-  time = params.fetch("time").to_i()
-  @train.update({city_ids: [city_id]})
-  @train.add_time({time: time, city_id: city_id})
-  @trains = Train.all()
+patch('/stylist_edit/:id') do
+  s_name = params.fetch("s_name")
+  id = params.fetch("stylist_id").to_i()
+  stylist = Stylist.find(id.to_i())
+  stylist.update({s_name: s_name, id: id})
+  @clients = Client.all()
+  @stylist = Stylist.find(id.to_i())
   erb(:stylist)
 end

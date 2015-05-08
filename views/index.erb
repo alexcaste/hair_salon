@@ -12,7 +12,7 @@
   <ul>
     <% @stylists.each do |stylist| %>
     <li>
-        <a href="/stylists/<%= stylist.id() %>"><%= stylist.s_name() %></a>
+        <a href="/stylist/<%= stylist.id() %>"><%= stylist.s_name() %></a>
           <span class = "btn-group">
             <form action ="/stylists/<%= stylist.id() %>" method="post">
               <input name ="_method" type ="hidden" value="delete">
@@ -33,7 +33,7 @@
   <label for="s_name">Add Stylist:</label>
   <input id="s_name" name="s_name" type="text">
 
-  <button type="submit">Add</button>
+  <button type="submit">Add Stylist</button>
 </form>
 <br>
 <hr>
@@ -41,15 +41,30 @@
 <br>
 <h2>Client:</h2>
 <% if @clients.any?() %>
-  <p>Click on stylist to see the clients they have:</p>
+  <p>Here are all the clients of the salon:</p>
 
   <ul>
     <% @clients.each do |client| %>
-    <li>Client: <%= client.c_name() %>  Stylist: <% client.c_stylist() %></li>
+    <li>Client: <%= client.c_name() %>
+      <span class = "btn-group">
+        <form action ="/clients/<%= client.id() %>" method="post">
+          <input name ="_method" type ="hidden" value="delete">
+          <button type = "submit">Remove</button>
+        </form>
+      </span>
+      <p></p>
+    </li>
     <% end %>
   </ul>
 <% else %>
   <h6><p class="text-left text-uppercase">All the poor illiterate children have been saved. Please, find more to help.</p></h6>
 <% end %>
+
+<form action="/clients" method="post">
+  <label for="c_name">Add Client:</label>
+  <input id="c_name" name="c_name" type="text">
+
+  <button type="submit">Add Client</button>
+</form>
 
 <br>

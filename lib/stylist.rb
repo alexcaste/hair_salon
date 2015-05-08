@@ -40,4 +40,8 @@ attr_reader(:s_name, :id)
     @id = self.id()
     DB.exec("UPDATE stylists SET s_name ='#{@s_name}' WHERE id = #{@id};")
   end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM stylists WHERE id =#{self.id()};")
+  end
 end

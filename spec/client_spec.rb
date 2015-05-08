@@ -8,4 +8,11 @@ describe(Client) do
       expect(bob.c_name()).to(eq("Bob"))
     end
   end
+
+  describe("#id") do
+    it("returns the id") do
+      bob = Client.new(c_name: "Bob", stylist_id: nil, id: 1)
+      expect(bob.id()).to(eq(1))
+    end
+  end
 end

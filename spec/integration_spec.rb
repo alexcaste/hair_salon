@@ -94,3 +94,17 @@ describe('the change name of stylist path', {:type => :feature})do
   expect(page).to have_content('Hansel')
   end
 end
+
+describe('the add a client to a stylist path', {:type => :feature})do
+  it("allows user to add a client to a stylist")do
+  stylist = Stylist.new(s_name: "Zoolander", id: nil)
+  stylist.save()
+  client = Client.new(c_name: "Dan", stylist_id: 1, id: nil)
+  client.save()
+  visit('/')
+  click_link('Zoolander')
+  select('Dan')
+  click_button('Add Client')
+  expect(page).to have_content('Dan')
+  end
+end

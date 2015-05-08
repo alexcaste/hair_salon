@@ -85,15 +85,22 @@ patch('/stylist_edit/:id') do
   erb(:stylist)
 end
 
-patch('/stylist/:id/add_client') do
-  stylist_id = params.fetch("id").to_i()
-  @stylist = Stylist.find(stylist_id)
+post('/stylist/:id/add_client') do
   client_id = params.fetch("client_id").to_i()
-  @client = Client.find(client_id)
-  @client.update({c_name: @client_c_name, stylist_id: stylist_id, id: @client.id()})
-  @clients = Client.all()
+  client = Client.find(client_id)
+  c_name = client.c_name()
+  stylist_id = params.fetch("id").to_i()
+  client.update({:stylist_id => stylist_id})
   @stylist = Stylist.find(stylist_id)
-  @stylists = Stylist.all()
-  @not_clients = @stylist.not_clients
   erb(:stylist)
+end
+
+patch('/edit_client') do
+  c_name = params.fetch("c_name")
+  client_id = params.fetch("client_id").to_i()
+  client = Client.find(client_id.to_i())
+  client.update({c_name: c_name, id: client_id})
+  @clients = Client.all()
+  @stylists = Stylist.all()
+  erb(:index)
 end

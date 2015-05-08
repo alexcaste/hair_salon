@@ -54,6 +54,13 @@ describe(Client) do
       client.update({c_name: "Dan"})
       expect(client.c_name()).to(eq("Dan"))
     end
+
+    it("lets you update clients in the database") do
+      client = Client.new(c_name: "Bob", stylist_id: 1, id: nil)
+      client.save()
+      client.update({stylist_id: 2})
+      expect(client.stylist_id()).to(eq(2))
+    end
   end
 
   describe("#delete") do

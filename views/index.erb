@@ -35,7 +35,6 @@
 
   <button type="submit">Add Stylist</button>
 </form>
-<br>
 <hr>
 
 <br>
@@ -56,15 +55,29 @@
     </li>
     <% end %>
   </ul>
+
+  <form action="/edit_client" method="post">
+    <input type ="hidden" name = "_method" value="patch">
+        <label for="client_id">Select a client to edit:</label>
+        <select id='client_id' name='client_id' type='text'>
+          <% @clients.each() do |client| %>
+            <option value="<%= client.id()%>"> <%= client.c_name() %> </option>
+          <% end %>
+        </select>
+          <label for="c_name"></label>
+          <input id="c_name" name="c_name" type="text">
+          <button type = "submit">Change</button>
+        </form>
 <% else %>
   <h6><p class="text-left text-uppercase">All the poor illiterate children have been saved. Please, find more to help.</p></h6>
 <% end %>
+<br>
 
 <form action="/clients" method="post">
   <label for="c_name">Add Client:</label>
   <input id="c_name" name="c_name" type="text">
 
-  <button type="submit">Add Client</button>
+  <button type="submit">Add New Client</button>
 </form>
 
 <br>

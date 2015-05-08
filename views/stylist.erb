@@ -18,9 +18,7 @@
   </ul>
 
 <% else %>
-
 <h4>The children are afraid of <%= @stylist.s_name() %></h4>
-
 <% end %>
 
 
@@ -30,18 +28,21 @@
 <h4>Select a client to add to <%= @stylist.s_name() %>.</h4>
 
 <form action="/stylist/<%= @stylist.id() %>/add_client" method="post">
-    <input type ="hidden" name = "_method" value="patch">
 
       <label for="client_id">Select a Client</label>
       <select id='client_id' name='client_id' type='text'>
-        <% @stylist.not_clients().each() do |client| %>
+        <% @not_clients = @stylist.not_clients() %>
+        <% @not_clients.each() do |client| %>
           <option value="<%= client.id()%>"> <%= client.c_name() %> </option>
         <% end %>
       </select>
-      <button type = "submit"> Add </button>
+      <button type = "submit">Add Client</button>
   </form>
+  <h4>or</h4>
+<% else %>
 <% end %>
-<h4>or</h4>
+
+
 <form action="/stylist/<%= @stylist.id() %>/new_client" method="post">
   <input id = 'stylist_id' name = 'stylist_id' type ='hidden' value = '<%= @stylist.id() %>'>
   <label for="c_name">Add a new Client:</label>

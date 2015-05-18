@@ -1,5 +1,5 @@
 
-Dictionary
+Hair Salon
 
 By Alexandar Castaneda
 
@@ -9,9 +9,9 @@ GNU General Public License, version 3 (see below). Copyright (c) 2015 Alexandar 
 
 Description
 
-Dictionary
+Hair Salon
 
-This is a management system for a hair salon.  It allows user to add, edit, delete stylists and clients.  It allows user to assign clients to a stylist.
+This app allows a user to create, edit and delete a hair stylist and client.  Clients can be assigned to hair stylists.  This app is currently in progress and needs to have an integration spec fixed.
 
 Author
 
@@ -44,3 +44,5 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
+
+
